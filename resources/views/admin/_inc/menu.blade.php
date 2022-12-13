@@ -1,7 +1,7 @@
 <div class="leftside-menu">
 
     <!-- LOGO -->
-    <a href="index.html" class="logo text-center logo-light">
+    <a href="{{ route('dashboard') }}" class="logo text-center logo-light">
                     <span class="logo-lg">
                         <img src="{{ asset('/') }}admin/assets/images/logo.png" alt="" height="16">
                     </span>
@@ -11,7 +11,7 @@
     </a>
 
     <!-- LOGO -->
-    <a href="index.html" class="logo text-center logo-dark">
+    <a href="{{ route('dashboard') }}" class="logo text-center logo-dark">
                     <span class="logo-lg">
                         <img src="{{ asset('/') }}admin/assets/images/logo-dark.png" alt="" height="16">
                     </span>
@@ -43,7 +43,7 @@
                 <div class="collapse" id="sidebarEcommerce">
                     <ul class="side-nav-second-level">
                         <li>
-                            <a href="apps-ecommerce-products.html">Course Category</a>
+                            <a href="{{ route('course-categories.index') }}">Course Category</a>
                         </li>
                         <li>
                             <a href="apps-ecommerce-products-details.html">Course Sub Category</a>
