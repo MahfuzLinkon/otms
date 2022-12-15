@@ -12,6 +12,7 @@
                         <a href="{{ route('course-categories.create') }}" class="btn btn-info float-end ms-auto">Create Category</a>
                     </div>
                     <div class="card-body">
+                        <p class="text-center text-success">{{ Session::has('success') ? Session::get('success') : '' }}</p>
                         <table class="table table-hover table-striped">
                             <thead>
                                 <tr>
@@ -22,15 +23,17 @@
                                 </tr>
                             </thead>
                             <tbody>
+                            @foreach($courseCategories as $courseCategory)
                             <tr>
-                                <td>SL</td>
-                                <td>Name</td>
-                                <td>Status</td>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $courseCategory->name }}</td>
+                                <td>{{ $courseCategory->status == 1 ? 'Published' : 'Unpublished' }}</td>
                                 <td>
-                                    <a href="" class="btn btn-primary">Edit</a>
-                                    <a href="" class="btn btn-danger">Delete</a>
+                                    <a href="{{ route('course-categories.edit', $courseCategory->id) }}" class="btn btn-primary"> <i class="uil-edit"></i> </a>
+                                    <a href="{{ route('course-categories.destroy', $courseCategory->id) }}" class="btn btn-danger"><i class="uil-trash"></i></a>
                                 </td>
                             </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
