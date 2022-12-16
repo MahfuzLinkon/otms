@@ -9,10 +9,8 @@
                 <div class="card">
                     <div class="card-header d-flex">
                         <h4>Course Category List</h4>
-                        <a href="{{ route('course-categories.create') }}" class="btn btn-info float-end ms-auto">Create Category</a>
                     </div>
                     <div class="card-body">
-                        <p class="text-center text-success">{{ Session::has('success') ? Session::get('success') : '' }}</p>
                         <table class="table table-hover table-striped">
                             <thead>
                                 <tr>
@@ -30,7 +28,11 @@
                                 <td>{{ $courseCategory->status == 1 ? 'Published' : 'Unpublished' }}</td>
                                 <td>
                                     <a href="{{ route('course-categories.edit', $courseCategory->id) }}" class="btn btn-primary"> <i class="uil-edit"></i> </a>
-                                    <a href="{{ route('course-categories.destroy', $courseCategory->id) }}" class="btn btn-danger"><i class="uil-trash"></i></a>
+                                    <form onsubmit="return confirm('Are You Sure ?')" action="{{ route('course-categories.destroy', $courseCategory->id) }}" style="display: inline-block" method="post">
+                                        @csrf
+                                        @method("DELETE")
+                                        <button type="submit" class="btn btn-danger"  ><i class="uil-trash"></i></button>
+                                    </form>
                                 </td>
                             </tr>
                             @endforeach

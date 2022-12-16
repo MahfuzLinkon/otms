@@ -15,7 +15,7 @@
                         <form action="{{ route('course-categories.update', $courseCategory->id) }}" method="post">
                             @csrf
 {{--                            {{ method_field('PATCH') }}--}}
-                            @method('PATCH')
+                            @method('PUT')
                             <div class="row">
                                 <label for="" class="col-md-4">Name</label>
                                 <div class="col-md-8">

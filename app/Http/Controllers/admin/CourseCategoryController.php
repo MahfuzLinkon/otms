@@ -87,6 +87,7 @@ class CourseCategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        CourseCategory::find($id)->delete();
+        return redirect()->back()->with('success', 'Course Category Deleted Successfully');
     }
 }
