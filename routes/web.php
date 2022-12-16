@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\front\FrontController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\CourseCategoryController;
+use App\Http\Controllers\admin\CourseSubCategoryController;
 
 
 //Route::get('/', [FrontController::class, 'home'])->name('front.home');
@@ -27,4 +28,6 @@ Route::middleware([
     Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 //    Course Category Route
     Route::resource('course-categories', CourseCategoryController::class);
+    //    Course Sub Category Route
+    Route::resource('course-sub-categories', CourseSubCategoryController::class);
 });

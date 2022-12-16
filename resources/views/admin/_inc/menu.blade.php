@@ -46,7 +46,7 @@
                             <a href="{{ route('course-categories.index') }}">Course Category</a>
                         </li>
                         <li>
-                            <a href="apps-ecommerce-products-details.html">Course Sub Category</a>
+                            <a href="{{ route('course-sub-categories.index') }}">Course Sub Category</a>
                         </li>
                         <li>
                             <a href="apps-ecommerce-orders.html">Course</a>

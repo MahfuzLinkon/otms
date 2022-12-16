@@ -8,8 +8,8 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="float-start">Course Category</h4>
-                        <a href="{{ route('course-categories.create') }}" class="btn btn-primary float-end">Create</a>
+                        <h4 class="float-start">Course Category List</h4>
+                        <a href="{{ route('course-sub-categories.create') }}" class="btn btn-primary float-end">Create</a>
                     </div>
                     <div class="card-body">
                         <table class="table table-hover table-striped">
@@ -17,19 +17,21 @@
                                 <tr>
                                     <th>SL</th>
                                     <th>Name</th>
+                                    <th>Category Name</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                            @foreach($courseCategories as $courseCategory)
+                            @foreach($courseSubCategories as $courseSubCategory)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $courseCategory->name }}</td>
-                                <td>{{ $courseCategory->status == 1 ? 'Published' : 'Unpublished' }}</td>
+                                <td>{{ $courseSubCategory->name }}</td>
+                                <td>{{ $courseSubCategory->category_id }}</td>
+                                <td>{{ $courseSubCategory->status == 1 ? 'Published' : 'Unpublished' }}</td>
                                 <td>
-                                    <a href="{{ route('course-categories.edit', $courseCategory->id) }}" class="btn btn-primary"> <i class="uil-edit"></i> </a>
-                                    <form onsubmit="return confirm('Are You Sure ?')" action="{{ route('course-categories.destroy', $courseCategory->id) }}" style="display: inline-block" method="post">
+                                    <a href="{{ route('course-sub-categories.edit', $courseSubCategory->id) }}" class="btn btn-primary"> <i class="uil-edit"></i> </a>
+                                    <form onsubmit="return confirm('Are You Sure ?')" action="{{ route('course-sub-categories.destroy', $courseSubCategory->id) }}" style="display: inline-block" method="post">
                                         @csrf
                                         @method("DELETE")
                                         <button type="submit" class="btn btn-danger"  ><i class="uil-trash"></i></button>

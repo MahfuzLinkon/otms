@@ -1,6 +1,6 @@
 @extends('admin.master')
 @section('title')
-    Create Course Category Page
+    Create Course Sub Category Page
 @endsection
 @section('body')
     <section class="py-3">
@@ -8,14 +8,24 @@
             <div class="col-md-8 mx-auto">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="float-start">Create Course Category</h4>
-                        <a href="{{ route('course-categories.index') }}" class="btn btn-primary float-end">Manage</a>
+                        <h4 class="float-start">Create Course Sub Category</h4>
+                        <a href="{{ route('course-sub-categories.index') }}" class="btn btn-primary float-end">Manage</a>
                     </div>
                     <div class="card-body">
-                        <p class="text-center text-success">{{ Session::has('success') ? Session::get('success') : '' }}</p>
-                        <form action="{{ route('course-categories.store') }}" method="post">
+                        <form action="{{ route('course-sub-categories.store') }}" method="post">
                             @csrf
                             <div class="row">
+                                <label for="" class="col-md-4">Category Name</label>
+                                <div class="col-md-8">
+                                    <select name="category_id" id="" class="form-control">
+                                        <option value="" selected disabled>--Select Course Category--</option>
+                                        @foreach($courseCategories as $courseCategory)
+                                        <option value="{{ $courseCategory->id }}">{{ $courseCategory->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
                                 <label for="" class="col-md-4">Name</label>
                                 <div class="col-md-8">
                                     <input type="text" name="name" class="form-control">
@@ -31,7 +41,7 @@
                             <div class="row mt-3">
                                 <label for="" class="col-md-4"></label>
                                 <div class="col-md-8">
-                                    <input type="submit" class="btn btn-success form-control" value="Create Category">
+                                    <input type="submit" class="btn btn-success form-control" value="Create Sub Category">
                                 </div>
                             </div>
                         </form>
