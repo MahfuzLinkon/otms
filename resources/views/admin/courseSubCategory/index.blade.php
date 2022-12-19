@@ -27,7 +27,7 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $courseSubCategory->name }}</td>
-                                <td>{{ $courseSubCategory->category_id }}</td>
+                                <td>{{ $courseSubCategory->category->name }}</td>
                                 <td>{{ $courseSubCategory->status == 1 ? 'Published' : 'Unpublished' }}</td>
                                 <td>
                                     <a href="{{ route('course-sub-categories.edit', $courseSubCategory->id) }}" class="btn btn-primary"> <i class="uil-edit"></i> </a>

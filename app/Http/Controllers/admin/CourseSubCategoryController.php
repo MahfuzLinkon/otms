@@ -29,7 +29,7 @@ class CourseSubCategoryController extends Controller
     public function create()
     {
         return view('admin.courseSubCategory.create', [
-            'courseCategories' => CourseCategory::all(),
+            'courseCategories' => CourseCategory::where('status', 1)->get(),
         ]);
     }
 
@@ -66,7 +66,7 @@ class CourseSubCategoryController extends Controller
     {
         return view('admin.courseSubCategory.edit', [
             'courseSubCategory' => CourseSubCategory::find($id),
-            'courseCategories' => CourseCategory::all(),
+            'courseCategories' => CourseCategory::where('status', 1)->get(),
         ]);
     }
 

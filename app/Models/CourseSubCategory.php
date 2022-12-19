@@ -23,12 +23,12 @@ class CourseSubCategory extends Model
             'slug' => strtolower(str_replace(' ', '-', $request->name)),
             'status' => $request->status,
         ]);
-
-
     }
 
 
-
+    public function category(){
+        return $this->belongsTo(CourseCategory::class);
+    }
 
 
 
