@@ -8,6 +8,11 @@
 <script src="{{ asset('/') }}admin/assets/js/vendor/jquery-jvectormap-world-mill-en.js"></script>
 <!-- third party js ends -->
 
+<!-- CK Editor -->
+<script src="https://cdn.ckeditor.com/4.20.1/standard/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace( 'longDescription' );
+</script>
 <!-- demo app -->
 <script src="{{ asset('/') }}admin/assets/js/pages/demo.dashboard.js"></script>
 <!-- end demo js-->
@@ -25,3 +30,4 @@
     </script>
     {{ Session::forget('error') }}
 @endif
+@yield('script')
