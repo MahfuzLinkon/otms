@@ -34,79 +34,27 @@
     <section class="py-5">
         <div class="container">
             <div class="row">
-                <h3 class="text-center">All Courses</h3>
+                <h3 class="text-center py-3">All Courses</h3>
             </div>
             <div class="row">
+                @forelse($courses as $course)
                 <div class="col-md-3 mt-2">
                     <div class="card ">
-                        <img src="{{ asset('/') }}front/images/courses/1.jpg" class="card-img-top" alt="">
+                        <img src="{{ asset($course->image) }}" class="card-img-top" style="height: 220px" alt="">
                         <div class="card-body">
-                            <h5 class="card-title">Certified Training on Web Design & Development Using Laravel & Vue</h5>
-                            <p class="mb-0">Date: 17 Dec - 18 Mar 2023</p>
-                            <p class="mb-0">Hour: 250 Hour</p>
+                            <h5 class="card-title">{{ $course->title }}</h5>
+                            <p class="mb-0">Date: <small>{{ $course->starting_date.' - '.$course->ending_date }}</small></p>
+                            <p class="mb-0">Hour: {{ $course->total_hour }}</p>
                         </div>
                         <div class="card-footer d-flex bg-transparent py-0 ">
-                            <p class="mt-2">TK 250000</p>
+                            <p class="mt-2">TK {{ $course->price }}</p>
                             <a class="btn btn-info ms-auto text-primary bg-transparent border-0">Enroll Now</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 mt-2">
-                    <div class="card ">
-                        <img src="{{ asset('/') }}front/images/courses/1.jpg" class="card-img-top" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title">Certified Training on Web Design & Development Using Laravel & Vue</h5>
-                            <p class="mb-0">Date: 17 Dec - 18 Mar 2023</p>
-                            <p class="mb-0">Hour: 250 Hour</p>
-                        </div>
-                        <div class="card-footer d-flex bg-transparent py-0 ">
-                            <p class="mt-2">TK 250000</p>
-                            <a class="btn btn-info ms-auto text-primary bg-transparent border-0">Enroll Now</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 mt-2">
-                    <div class="card ">
-                        <img src="{{ asset('/') }}front/images/courses/1.jpg" class="card-img-top" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title">Certified Training on Web Design & Development Using Laravel & Vue</h5>
-                            <p class="mb-0">Date: 17 Dec - 18 Mar 2023</p>
-                            <p class="mb-0">Hour: 250 Hour</p>
-                        </div>
-                        <div class="card-footer d-flex bg-transparent py-0 ">
-                            <p class="mt-2">TK 250000</p>
-                            <a class="btn btn-info ms-auto text-primary bg-transparent border-0">Enroll Now</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 mt-2">
-                    <div class="card ">
-                        <img src="{{ asset('/') }}front/images/courses/1.jpg" class="card-img-top" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title">Certified Training on Web Design & Development Using Laravel & Vue</h5>
-                            <p class="mb-0">Date: 17 Dec - 18 Mar 2023</p>
-                            <p class="mb-0">Hour: 250 Hour</p>
-                        </div>
-                        <div class="card-footer d-flex bg-transparent py-0 ">
-                            <p class="mt-2">TK 250000</p>
-                            <a class="btn btn-info ms-auto text-primary bg-transparent border-0">Enroll Now</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 mt-2">
-                    <div class="card ">
-                        <img src="{{ asset('/') }}front/images/courses/1.jpg" class="card-img-top" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title">Certified Training on Web Design & Development Using Laravel & Vue</h5>
-                            <p class="mb-0">Date: 17 Dec - 18 Mar 2023</p>
-                            <p class="mb-0">Hour: 250 Hour</p>
-                        </div>
-                        <div class="card-footer d-flex bg-transparent py-0 ">
-                            <p class="mt-2">TK 250000</p>
-                            <a class="btn btn-info ms-auto text-primary bg-transparent border-0">Enroll Now</a>
-                        </div>
-                    </div>
-                </div>
+                @empty
+                    <h3>Course Not Available</h3>
+                @endforelse
             </div>
         </div>
     </section>

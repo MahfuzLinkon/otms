@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\CourseCategory;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +25,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+//        View::share('index', 'value');
+        View::composer('front.master', function($view){
+            $view->with('categories', CourseCategory::where('status', 1)->get());
+        });
     }
 }
