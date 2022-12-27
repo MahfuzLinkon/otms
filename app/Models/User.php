@@ -9,6 +9,8 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\Hash;
+
 
 class User extends Authenticatable
 {
@@ -59,4 +61,16 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public static function userUpdateOrCreate($request, $id = null){
+        $password = Hash::make($request->password);
+        User::updateOrCreate(['id' => $id], [
+            'name' => $request->name,
+            'email' => $request->email,
+            'role_type' => $request->role_type,
+            'password' => empty($id) ? $password : User::find($id)->password,
+
+        ]);
+    }
+
 }

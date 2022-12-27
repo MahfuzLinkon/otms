@@ -12,6 +12,7 @@ class CourseController extends Controller
 {
     private $subCategories;
     private $subCategory;
+    private $course;
     /**
      * Display a listing of the resource.
      *
@@ -33,7 +34,6 @@ class CourseController extends Controller
     {
         return view('admin.course.create',[
             'courseCategories' => CourseCategory::where('status', 1)->get(),
-            'courseSubCategories' => CourseSubCategory::where('status', 1)->get(),
         ]);
     }
 
@@ -70,7 +70,7 @@ class CourseController extends Controller
     {
         return view('admin.course.edit',[
             'course' => Course::find($id),
-            'courseCategory' => CourseCategory::where('status', 1)->get(),
+            'courseCategories' => CourseCategory::where('status', 1)->get(),
         ]);
     }
 
@@ -83,7 +83,7 @@ class CourseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Course::courseUpdateOrCreate($request);
+        Course::courseUpdateOrCreate($request, $id);
         return redirect()->route('courses.index')->with('success', 'Course Updated Successfully');
     }
 
@@ -95,17 +95,50 @@ class CourseController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->course = Course::where('id', $id)->first();
+        if ($this->course->image){
+            if (file_exists($this->course->image)){
+                unlink($this->course->image);
+            }
+        }
+        $this->course->delete();
+        return redirect()->back()->with('success', 'Course Deleted Successfully');
     }
 
     public function getSubCategory(Request $request){
         $this->subCategories = CourseSubCategory::where('category_id',$request->category_id)->get(['id','name']);
 //        return json_encode($request->category_id);
 
+//        ---------type 2-----------
 //        foreach ($this->subCategories as $subCategory){
-////            echo $subCategory->name;
-//            echo $subCategory .="<option value='".$subCategory->id."'>". $subCategory->name ."</option>";
+//              echo $subCategory .="<option value='".$subCategory->id."'>". $subCategory->name ."</option>";
 //        }
         return response()->json($this->subCategories);
     }
+
+    public  function coursesStatus($id){
+        $this->course = Course::where('id', $id)->first();
+        if ($this->course->status == 1){
+            $message = 'Course Unpublished Successfully';
+            $this->course->status = 0;
+
+        }elseif ($this->course->status == 0){
+            $message = 'Course Published Successfully';
+            $this->course->status = 1;
+        }
+        $this->course->save();
+        return redirect()->back()->with('success', $message);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 }

@@ -76,13 +76,13 @@
             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#sidebarProjects" aria-expanded="false" aria-controls="sidebarProjects" class="side-nav-link">
                     <i class="uil-briefcase"></i>
-                    <span> Contact Module </span>
+                    <span> User Module </span>
                     <span class="menu-arrow"></span>
                 </a>
                 <div class="collapse" id="sidebarProjects">
                     <ul class="side-nav-second-level">
                         <li>
-                            <a href="apps-projects-list.html">Manage Contact</a>
+                            <a href="{{ route('users.index') }}">Manage User</a>
                         </li>
                         <li>
                             <a href="apps-projects-details.html">Sent Mail</a>

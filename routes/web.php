@@ -6,6 +6,7 @@ use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\CourseCategoryController;
 use App\Http\Controllers\admin\CourseSubCategoryController;
 use App\Http\Controllers\admin\CourseController;
+use App\Http\Controllers\admin\UserController;
 
 
 //Route::get('/', [FrontController::class, 'home'])->name('front.home');
@@ -34,4 +35,9 @@ Route::middleware([
     //    Course Route
     Route::resource('courses', CourseController::class);
     Route::get('/get-subcategory-category-wise', [CourseController::class, 'getSubCategory'])->name('get-subcategory-category-wise');
+    Route::get('/course-status/{id}', [CourseController::class, 'coursesStatus'])->name('courses.status');
+
+    Route::resource('users', UserController::class);
+
+
 });

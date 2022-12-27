@@ -17,8 +17,8 @@
                             <div class="row">
                                 <label for="" class="col-md-4">Category Name</label>
                                 <div class="col-md-8">
-                                    <select name="category_id" id="categoryId" class="form-control">
-                                        <option value="" selected disabled>--Select Course Category--</option>
+                                    <select name="category_id" id="categoryId" class="form-control select2" data-toggle="select2" data-placeholder="Select a category">
+                                        <option></option>
                                         @foreach($courseCategories as $courseCategory)
                                             <option value="{{ $courseCategory->id }}">{{ $courseCategory->name }}</option>
                                         @endforeach
@@ -28,7 +28,8 @@
                             <div class="row mt-3">
                                 <label for="" class="col-md-4">Sub Category Name</label>
                                 <div class="col-md-8">
-                                    <select name="subCategory_id" id="subCategory" class="form-control" >
+                                    <select name="subCategory_id" id="subCategory" class="form-control select2" data-toggle="select2" data-placeholder="Select a sub category">
+                                        <option></option>
                                     </select>
                                 </div>
                             </div>
@@ -85,7 +86,7 @@
                             <div class="row mt-3">
                                 <label for="" class="col-md-4"></label>
                                 <div class="col-md-8">
-                                    <input type="submit" class="btn btn-success form-control" value="Create Sub Category">
+                                    <input type="submit" class="btn btn-success form-control" value="Create Course">
                                 </div>
                             </div>
                         </form>
@@ -112,12 +113,22 @@
                 data: {category_id: categoryId},
                 success: function (response){
                     // console.log(response);
-                    $('#subCategory').empty();
-                    $.each(response,function(index,subCategory){
-                        $('#subCategory').append('<option value="'+subCategory.id+'">'+subCategory.name+'</option>');
-                        // console.log(subCategory.name );
-                    })
+
+                    // type 1
+                    // $('#subCategory').empty();
+                    // $.each(response,function(index,subCategory){
+                    //     $('#subCategory').append('<option value="'+subCategory.id+'">'+subCategory.name+'</option>');
+                    // })
+                    // type 2
                     // $('#subCategory').html(response);
+
+                    // type 3
+                    var option = '';
+                    option += '<option disabled selected>Select a sub category</option>';
+                    $.each(response, function (key, value){
+                        option += '<option value="'+value.id+'">'+value.name+'</option>';
+                    });
+                    $('#subCategory').empty().append(option);
                 }
             })
         });

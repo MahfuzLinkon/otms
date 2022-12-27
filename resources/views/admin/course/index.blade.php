@@ -12,7 +12,7 @@
                         <a href="{{ route('courses.create') }}" class="btn btn-primary float-end">Create</a>
                     </div>
                     <div class="card-body">
-                        <table class="table table-hover table-striped">
+                        <table id="courseTable" class="table table-hover table-striped">
                             <thead>
                             <tr>
                                 <th>SL</th>
@@ -48,12 +48,15 @@
                                         <img src="{{ asset($course->image) }}" alt="" style="height: 80px; width: 80px;">
                                     </td>
                                     <td>
-                                        <a href="{{ route('course-sub-categories.edit', $course->id) }}" class="btn btn-primary"> <i class="uil-edit"></i> </a>
-                                        <form onsubmit="return confirm('Are You Sure ?')" action="{{ route('course-sub-categories.destroy', $course->id) }}" style="display: inline-block" method="post">
-                                            @csrf
-                                            @method("DELETE")
-                                            <button type="submit" class="btn btn-danger"  ><i class="uil-trash"></i></button>
-                                        </form>
+                                        <div class="d-flex">
+                                            <a href="{{ route('courses.status', ['id' => $course->id]) }}" class="btn btn-{{ $course->status == 1 ? 'warning' : 'success' }}"> <i class="uil-arrow-{{ $course->status == 1 ? 'down' : 'up' }}"></i> </a>
+                                            <a href="{{ route('courses.edit', $course->id) }}" class="ms-1 btn btn-primary"> <i class="uil-edit"></i> </a>
+                                            <form onsubmit="return confirm('Are You Sure ?')" action="{{ route('courses.destroy', $course->id) }}" style="display: inline-block" method="post">
+                                                @csrf
+                                                @method("DELETE")
+                                                <button type="submit" class="ms-1 btn btn-danger"  ><i class="uil-trash"></i></button>
+                                            </form>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach
@@ -64,4 +67,14 @@
             </div>
         </div>
     </section>
+@endsection
+
+@section('script')
+    <script>
+        $(document).ready(function () {
+            $('#courseTable').DataTable({
+                scrollX: true,
+            });
+        });
+    </script>
 @endsection
